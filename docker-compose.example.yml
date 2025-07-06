@@ -1,10 +1,13 @@
 services:
 
   app:
-    image: argon/keep-it
-    build: ./app
+    image: argon/keep-it:dev
+    build:
+      context: ./app
+      target: dev
     volumes:
       - ./app:/app
+      - /app/node_modules
     ports:
       - 3000:3000
     environment:
