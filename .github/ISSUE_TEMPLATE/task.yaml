@@ -1,0 +1,53 @@
+name: 🚀 Task
+description: A task that needs to be completed
+title: "[Task]: "
+labels: ["enhancement"]
+
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "📝 Task Description"
+      description: "Provide a brief summary of the task"
+      placeholder: "Describe the task in detail..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: "✅ Acceptance Criteria"
+      description: "What conditions must be met for the task to be considered complete?"
+      placeholder: "- [ ] Criteria 1\n- [ ] Criteria 2\n- [ ] Criteria 3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "⚡ Priority"
+      description: "Select the priority level of this task"
+      options:
+        - High
+        - Medium
+        - Low
+      default: 1
+    validations:
+      required: true
+
+  - type: input
+    id: due_date
+    attributes:
+      label: "📅 Due Date"
+      description: "Specify the deadline for this task (YYYY-MM-DD format)"
+      placeholder: "2024-02-01"
+
+  - type: checkboxes
+    id: progress
+    attributes:
+      label: "🚀 Task Progress"
+      description: "Track progress using these checkboxes"
+      options:
+        - label: "🛠️ In Progress"
+        - label: "✅ Completed"
+        - label: "🔄 Needs Review"

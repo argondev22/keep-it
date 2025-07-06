@@ -1,0 +1,45 @@
+name: "🤖 Feature"
+description: "Propose a new feature or improvement"
+title: "[Feature] "
+labels: ["feature", "enhancement"]
+assignees:
+  - "your-github-username"
+body:
+  - type: input
+    id: feature-summary
+    attributes:
+      label: "📝 Feature Summary"
+      description: "Briefly explain what this feature does and why it is useful."
+      placeholder: "Example: Allow users to enable dark mode."
+
+  - type: textarea
+    id: feature-details
+    attributes:
+      label: "📌 Detailed Description"
+      description: "Provide a detailed explanation of the feature's functionality and expected behavior."
+      placeholder: "This feature will add a toggle in user settings to switch between light and dark mode. The preference will be stored in local storage."
+
+  - type: textarea
+    id: related-problems
+    attributes:
+      label: "⚠️ Related Problems (Optional)"
+      description: "If this feature solves a specific problem, describe it here."
+      placeholder: "Currently, users need to manually change CSS settings, which is inconvenient."
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "🚀 Priority Level"
+      description: "Select the importance of this feature."
+      options:
+        - "Low (Nice to have)"
+        - "Medium (Should have)"
+        - "High (Must have)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: "💡 Additional Information (Optional)"
+      description: "Include any other relevant details or context here."
