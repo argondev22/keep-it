@@ -1,11 +1,11 @@
 FROM node:18-alpine AS dev
 
-WORKDIR /app
+WORKDIR /app/
 
 COPY package*.json ./
 RUN npm ci --include=dev
 
-COPY . .
+COPY ./ ./
 
 EXPOSE 3000
 
@@ -15,19 +15,25 @@ CMD ["npm", "run", "dev"]
 # build stage for production
 FROM node:18-alpine AS build
 
-WORKDIR /app
+WORKDIR /app/
 
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --only=production
 
-COPY . .
+COPY ./ ./
 
 RUN npm run build
 
 
-FROM gcr.io/distroless/static-debian12 AS prod
+FROM node:18-alpine AS prod
 
-COPY --from=build /app/.next /app/.next
+WORKDIR /app/
+
+COPY --from=build /app/.next .next/
+COPY --from=build /app/public public/
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/node_modules node_modules/
+COPY --from=build /app/next.config.ts ./
 
 EXPOSE 3000
 
