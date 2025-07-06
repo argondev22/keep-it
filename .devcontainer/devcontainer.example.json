@@ -1,6 +1,7 @@
 {
   "name": "dev",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "forwardPorts": [3000],
   "customizations": {
     "vscode": {
       "extensions": [
