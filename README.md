@@ -17,9 +17,10 @@ cd keep-it
 
 ### 2. Dev Containersを起動する
 
-```
-chmod +x ./bin/setup-container.sh
-./bin/setup-container.sh
+```bash
+bash ./bin/setup-container.sh
+# または
+zsh ./bin/setup-container.sh
 ```
 
 以降の手順はDev Containers内で行う。
