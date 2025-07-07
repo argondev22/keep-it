@@ -12,7 +12,7 @@ EXPOSE 3000
 CMD ["npm", "run", "dev"]
 
 
-# build stage for production
+# 本番環境用のビルドステージ
 FROM node:18-alpine AS build
 
 WORKDIR /app/
