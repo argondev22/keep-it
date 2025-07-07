@@ -1,7 +1,11 @@
 {
-  "name": "dev",
+  "name": "keep-it-dev",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "forwardPorts": [3000],
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+  ],
+  "postCreateCommand": "git config --global user.name 'Your Name' && git config --global user.email 'your.email@example.com'",
   "customizations": {
     "vscode": {
       "extensions": [
