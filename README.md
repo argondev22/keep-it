@@ -14,8 +14,6 @@
 
 - Docker
 - Docker Compose
-- Git
-- Git LFS
 
 ## セットアップ手順
 
