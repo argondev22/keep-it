@@ -1,16 +1,19 @@
 {
-  "name": "dev",
+  "name": "keep-it-dev",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "forwardPorts": [3000],
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+  ],
+  "postCreateCommand": "git config --global user.name 'Your Name' && git config --global user.email 'your.email@example.com'",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-containers",
         "editorconfig.editorconfig",
         "cweijan.vscode-database-client2",
-        "cweijan.dbclient-jdbc",
-        "streetsidesoftware.code-spell-checker",
-        "golang.go",
-        "ms-python.python"
+        "cweijan.dbclient-jdbc"
       ]
     }
   },
@@ -18,11 +21,8 @@
     "ghcr.io/devcontainers/features/common-utils:2.5.3": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/go:1": {
-      "version": "1.23"
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.9"
-    }
+    "git-lfs": "latest",
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
   }
 }

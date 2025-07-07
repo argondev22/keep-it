@@ -1,23 +1,25 @@
 services:
 
-  sample_go:
-    image: template.utils/sample-go
-    build: ./app/sample_go
+  app:
+    image: argon/keep-it:dev
+    build:
+      context: ./app/
+      target: dev
     volumes:
-      - ./app/sample_go/src:/app
-
-  sample_py:
-    image: template.utils/sample-py
-    build: ./app/sample_py
-    volumes:
-      - ./app/sample_py/src:/app
+      - ./app/:/app/
+      - /app/node_modules/
+      - /app/.next/
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/
 
   sample_db:
     image: postgres:16
     ports:
       - 5432:5432
     volumes:
-      - sample_data:/var/lib/postgresql/data
+      - sample_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
