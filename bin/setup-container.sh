@@ -1,6 +1,5 @@
 #! /bin/bash
 
-# ユーザーからの入力を受け付ける
 echo "Githubのユーザー名を入力してください:"
 read gh_user_name
 
@@ -18,7 +17,6 @@ echo "Githubのメールアドレス: $gh_email"
 echo "--------------------------------"
 echo ""
 
-# 確認のための入力
 echo "上記の設定で続行しますか？ (y/n):"
 read confirmation
 
