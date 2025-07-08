@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import StudyTimer from "../components/StudyTimer";
-import QuickActions from "../components/QuickActions";
-import StatsSection from "../components/StatsSection";
+// import QuickActions from "../components/QuickActions";
+// import StatsSection from "../components/StatsSection";
 import SubjectList from "../components/SubjectList";
+import WelcomeSection from "../components/WelcomeSection";
 
 interface Subject {
   id: string;
@@ -37,31 +38,23 @@ export default function Home() {
       <Header />
 
       <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Welcome Section */}
-        <section className="text-center mb-12">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            今日も学習を頑張りましょう！
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            集中して勉強するための学習タイマーです。効率的な学習習慣を身につけましょう。
-          </p>
-        </section>
+        <WelcomeSection />
 
-        <section className="flex justify-center items-start gap-8 mb-12">
-          <StudyTimer 
+        <section className="relative flex justify-center mb-12">
+          <StudyTimer
             selectedSubject={selectedSubject}
             onResetSelection={() => setSelectedSubject(null)}
           />
-          <SubjectList
-            subjects={subjects}
-            selectedSubject={selectedSubject}
-            onSelectSubject={handleSelectSubject}
-            onAddSubject={handleAddSubject}
-          />
+          <div className="absolute right-0 top-0">
+            <SubjectList
+              subjects={subjects}
+              selectedSubject={selectedSubject}
+              onSelectSubject={handleSelectSubject}
+              onAddSubject={handleAddSubject}
+            />
+          </div>
         </section>
 
-        <QuickActions />
-        <StatsSection />
       </main>
     </div>
   );

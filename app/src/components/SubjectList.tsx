@@ -44,7 +44,7 @@ export default function SubjectList({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 w-80">
+    <div className="bg-white rounded-2xl shadow-xl p-6 w-80 h-[440px] flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <h4 className="text-lg font-semibold text-gray-800">教材一覧</h4>
         <button
@@ -73,25 +73,27 @@ export default function SubjectList({
         </div>
       )}
       
-      <div className="space-y-2">
-        {subjects.map((subject) => (
-          <div
-            key={subject.id}
-            onClick={() => onSelectSubject(subject)}
-            className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
-              selectedSubject?.id === subject.id
-                ? 'border-indigo-500 bg-indigo-50'
-                : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full ${subject.color} flex items-center justify-center text-white text-sm font-bold`}>
-                {subject.icon}
+      <div className="flex-1 overflow-y-auto">
+        <div className="space-y-2 pr-2">
+          {subjects.map((subject) => (
+            <div
+              key={subject.id}
+              onClick={() => onSelectSubject(subject)}
+              className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
+                selectedSubject?.id === subject.id
+                  ? 'border-indigo-500 bg-indigo-50'
+                  : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <div className={`w-8 h-8 rounded-full ${subject.color} flex items-center justify-center text-white text-sm font-bold`}>
+                  {subject.icon}
+                </div>
+                <span className="font-medium text-gray-800">{subject.name}</span>
               </div>
-              <span className="font-medium text-gray-800">{subject.name}</span>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

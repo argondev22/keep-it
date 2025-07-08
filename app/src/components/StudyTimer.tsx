@@ -91,6 +91,12 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
           </div>
         )}
         
+        {!isActive && !currentSubject && !selectedSubject && (
+          <div className="mb-4 p-3 bg-gray-50 rounded-lg">
+            <p className="text-gray-600 text-center">教材を選択してください</p>
+          </div>
+        )}
+        
         <div className="flex gap-3 justify-center">
           <button
             onClick={handleStart}
