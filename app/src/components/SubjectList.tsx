@@ -16,11 +16,11 @@ interface SubjectListProps {
   onAddSubject: (subject: Subject) => void;
 }
 
-export default function SubjectList({ 
-  subjects, 
-  selectedSubject, 
-  onSelectSubject, 
-  onAddSubject 
+export default function SubjectList({
+  subjects,
+  selectedSubject,
+  onSelectSubject,
+  onAddSubject
 }: SubjectListProps) {
   const [showSubjectSelection, setShowSubjectSelection] = useState(false);
   const [newSubjectName, setNewSubjectName] = useState("");
@@ -29,14 +29,14 @@ export default function SubjectList({
     if (newSubjectName.trim()) {
       const colors = ["bg-blue-500", "bg-green-500", "bg-red-500", "bg-purple-500", "bg-yellow-500", "bg-indigo-500", "bg-pink-500"];
       const icons = ["📖", "✏️", "🎯", "💡", "🔍", "📊", "🎨"];
-      
+
       const newSubject: Subject = {
         id: Date.now().toString(),
         name: newSubjectName.trim(),
         color: colors[Math.floor(Math.random() * colors.length)],
         icon: icons[Math.floor(Math.random() * icons.length)],
       };
-      
+
       onAddSubject(newSubject);
       setNewSubjectName("");
       setShowSubjectSelection(false);
@@ -44,7 +44,7 @@ export default function SubjectList({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-6 w-80 h-[440px] flex flex-col">
+    <div className="absolute right-15 bg-white rounded-2xl shadow-xl p-6 w-80 h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <h4 className="text-lg font-semibold text-gray-800">教材一覧</h4>
         <button
@@ -54,7 +54,7 @@ export default function SubjectList({
           {showSubjectSelection ? "×" : "+"}
         </button>
       </div>
-      
+
       {showSubjectSelection && (
         <div className="mb-4 p-3 bg-gray-50 rounded-lg">
           <input
@@ -62,7 +62,7 @@ export default function SubjectList({
             value={newSubjectName}
             onChange={(e) => setNewSubjectName(e.target.value)}
             placeholder="教材名を入力"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm mb-2"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm mb-2 text-gray-900"
           />
           <button
             onClick={handleAddSubject}
@@ -72,7 +72,7 @@ export default function SubjectList({
           </button>
         </div>
       )}
-      
+
       <div className="flex-1 overflow-y-auto">
         <div className="space-y-2 pr-2">
           {subjects.map((subject) => (

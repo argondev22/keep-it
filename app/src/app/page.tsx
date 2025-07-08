@@ -37,7 +37,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <Header />
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="mx-auto py-8">
         <WelcomeSection />
 
         <section className="relative flex justify-center mb-12">
@@ -45,14 +45,12 @@ export default function Home() {
             selectedSubject={selectedSubject}
             onResetSelection={() => setSelectedSubject(null)}
           />
-          <div className="absolute right-0 top-0">
-            <SubjectList
-              subjects={subjects}
-              selectedSubject={selectedSubject}
-              onSelectSubject={handleSelectSubject}
-              onAddSubject={handleAddSubject}
-            />
-          </div>
+          <SubjectList
+            subjects={subjects}
+            selectedSubject={selectedSubject}
+            onSelectSubject={handleSelectSubject}
+            onAddSubject={handleAddSubject}
+          />
         </section>
 
       </main>

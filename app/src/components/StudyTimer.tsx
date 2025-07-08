@@ -43,9 +43,9 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
       setIsActive(true);
     }
   };
-  
+
   const handlePause = () => setIsActive(false);
-  
+
   const handleReset = () => {
     setIsActive(false);
     setTime(25 * 60);
@@ -54,11 +54,10 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8 w-96">
+    <div className="bg-white rounded-3xl shadow-xl p-8 w-150">
       <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">
         学習タイマー
       </h3>
-      
       <div className="text-center">
         {currentSubject && (
           <div className="mb-4 p-3 bg-blue-50 rounded-lg">
@@ -69,7 +68,7 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
             </div>
           </div>
         )}
-        
+
         <div className="relative mx-auto mb-6">
           <div className="w-48 h-48 rounded-full border-8 border-indigo-100 bg-gradient-to-br from-indigo-50 to-indigo-100 flex items-center justify-center mx-auto shadow-inner">
             <div className="text-4xl font-mono text-indigo-600 font-bold">
@@ -80,7 +79,7 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
             <div className="absolute inset-0 rounded-full border-8 border-indigo-500 animate-pulse"></div>
           )}
         </div>
-        
+
         {!isActive && !currentSubject && selectedSubject && (
           <div className="mb-4 p-3 bg-green-50 rounded-lg">
             <p className="text-sm text-gray-600">選択中の教材</p>
@@ -90,20 +89,20 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
             </div>
           </div>
         )}
-        
+
         {!isActive && !currentSubject && !selectedSubject && (
           <div className="mb-4 p-3 bg-gray-50 rounded-lg">
             <p className="text-gray-600 text-center">教材を選択してください</p>
           </div>
         )}
-        
+
         <div className="flex gap-3 justify-center">
           <button
             onClick={handleStart}
             disabled={isActive || (!selectedSubject && !currentSubject)}
             className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
-            {currentSubject && !isActive ? "再開" : "開始"}
+            {currentSubject ? "再開" : "開始"}
           </button>
           <button
             onClick={handlePause}
