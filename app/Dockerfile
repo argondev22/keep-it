@@ -1,4 +1,4 @@
-FROM node:18-alpine AS dev
+FROM node:18-bullseye-slim AS dev
 
 WORKDIR /app/
 
@@ -18,7 +18,7 @@ FROM node:18-alpine AS build
 WORKDIR /app/
 
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci
 
 COPY ./ ./
 
