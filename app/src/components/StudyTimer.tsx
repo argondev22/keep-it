@@ -17,9 +17,13 @@ interface StudyTimerProps {
 }
 
 export default function StudyTimer({ selectedSubject, onResetSelection }: StudyTimerProps) {
-  const [studyTime, setStudyTime] = useState(25 * 60); // 25 minutes in seconds
-  const [breakTime, setBreakTime] = useState(5 * 60); // 5 minutes in seconds
-  const [time, setTime] = useState(25 * 60);
+  const MINUTES = 60;
+  const DEFAULT_STUDY_TIME = 25 * MINUTES;
+  const DEFAULT_BREAK_TIME = 5 * MINUTES;
+
+  const [studyTime, setStudyTime] = useState(DEFAULT_STUDY_TIME); // 25 minutes in seconds
+  const [breakTime, setBreakTime] = useState(DEFAULT_BREAK_TIME); // 5 minutes in seconds
+  const [time, setTime] = useState(DEFAULT_STUDY_TIME);
   const [isActive, setIsActive] = useState(false);
   const [isBreakTime, setIsBreakTime] = useState(false);
   const [currentSubject, setCurrentSubject] = useState<Subject | null>(null);
@@ -48,8 +52,8 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
   }, [isActive, time, isBreakTime, studyTime, breakTime]);
 
   const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
+    const minutes = Math.floor(seconds / MINUTES);
+    const remainingSeconds = seconds % MINUTES;
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
@@ -71,10 +75,10 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
   };
 
   const handleSettingsSubmit = (newStudyTime: number, newBreakTime: number) => {
-    setStudyTime(newStudyTime * 60);
-    setBreakTime(newBreakTime * 60);
+    setStudyTime(newStudyTime * MINUTES);
+    setBreakTime(newBreakTime * MINUTES);
     if (!isActive) {
-      setTime(newStudyTime * 60);
+      setTime(newStudyTime * MINUTES);
     }
     setShowSettings(false);
   };
@@ -96,8 +100,8 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
       {showSettings && (
         <div className="absolute inset-0 bg-white rounded-3xl shadow-xl p-8 z-10">
           <SettingsModal
-            initialStudyTime={studyTime / 60}
-            initialBreakTime={breakTime / 60}
+            initialStudyTime={studyTime / MINUTES}
+            initialBreakTime={breakTime / MINUTES}
             onSubmit={handleSettingsSubmit}
             onClose={() => setShowSettings(false)}
           />
