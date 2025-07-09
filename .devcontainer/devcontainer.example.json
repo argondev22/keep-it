@@ -13,7 +13,8 @@
         "ms-azuretools.vscode-containers",
         "editorconfig.editorconfig",
         "cweijan.vscode-database-client2",
-        "cweijan.dbclient-jdbc"
+        "cweijan.dbclient-jdbc",
+        "prisma.prisma"
       ]
     }
   },
