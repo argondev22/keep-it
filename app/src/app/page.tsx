@@ -16,7 +16,7 @@ interface Subject {
 }
 
 export default function Home() {
-  const [subjects, setSubjects] = useState<Subject[]>([
+  const [subjects] = useState<Subject[]>([
     { id: "1", name: "数学", color: "bg-blue-500", icon: "🧮" },
     { id: "2", name: "英語", color: "bg-green-500", icon: "📚" },
     { id: "3", name: "国語", color: "bg-red-500", icon: "✍️" },
@@ -29,9 +29,6 @@ export default function Home() {
     setSelectedSubject(subject);
   };
 
-  const handleAddSubject = (newSubject: Subject) => {
-    setSubjects([...subjects, newSubject]);
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -49,7 +46,6 @@ export default function Home() {
             subjects={subjects}
             selectedSubject={selectedSubject}
             onSelectSubject={handleSelectSubject}
-            onAddSubject={handleAddSubject}
           />
         </section>
 
