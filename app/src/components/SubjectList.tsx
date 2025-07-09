@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Settings } from "../lib/icons/table-icons";
 
 interface Subject {
   id: string;
@@ -14,12 +15,14 @@ interface SubjectListProps {
   subjects: Subject[];
   selectedSubject: Subject | null;
   onSelectSubject: (subject: Subject) => void;
+  isLoggedIn?: boolean;
 }
 
 export default function SubjectList({
   subjects,
   selectedSubject,
-  onSelectSubject
+  onSelectSubject,
+  isLoggedIn = false
 }: SubjectListProps) {
   const router = useRouter();
 
@@ -28,10 +31,15 @@ export default function SubjectList({
       <div className="flex items-center justify-between mb-6">
         <h4 className="text-lg font-semibold text-gray-800">今日の学習</h4>
         <button
-          onClick={() => router.push('/subjects')}
-          className="px-3 py-1 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors text-sm"
+          onClick={isLoggedIn ? () => router.push('/subjects') : undefined}
+          className={`px-3 py-1 rounded-lg text-sm transition-colors ${
+            isLoggedIn
+              ? 'bg-indigo-500 text-white hover:bg-indigo-600 cursor-pointer'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+          }`}
+          disabled={!isLoggedIn}
         >
-          +
+          <Settings className="w-6 h-6" />
         </button>
       </div>
 
@@ -39,7 +47,7 @@ export default function SubjectList({
       <div className="flex-1 overflow-y-auto">
         {subjects.length === 0 ? (
           <div className="flex items-center justify-center h-full">
-            <p className="text-gray-500 text-sm">今日の教材が登録されていません。<br />
+            <p className="text-gray-500 text-sm">教材が登録されていません。<br />
               教材を登録するには、<Link href="/login" className="text-blue-500 hover:text-blue-700">ログイン</Link>してください。</p>
           </div>
         ) : (
