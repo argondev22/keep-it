@@ -10,6 +10,39 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(uuid())
+
+  // === OIDC関連フィールド（必須） ===
+  oidcSubject String  @unique  // OIDCプロバイダーのsubject ID
+  provider    String           // "google", "auth0", "keycloak"など
+
+  // === OIDCから取得する基本情報（キャッシュ） ===
+  email       String?  @unique // OIDCプロバイダーからの email
+  name        String?          // 表示名
+  picture     String?          // プロフィール画像URL
+
+  // === アプリケーション固有フィールド ===
+  // role        UserRole @default(USER)
+  isActive    Boolean  @default(true)
+  // isVerified  Boolean  @default(false)
+
+  // === タイムスタンプ ===
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastLoginAt DateTime?
+
+  // === リレーション ===
+  // posts       Post[]
+  // orders      Order[]
+  // preferences UserPreference?
+
+  // 複合インデックス
+  @@unique([oidcSubject, provider])
+  @@index([email])
+  @@index([provider])
 }
