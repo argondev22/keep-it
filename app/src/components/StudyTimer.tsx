@@ -20,6 +20,18 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
   const MINUTES = 60;
   const DEFAULT_STUDY_TIME = 25 * MINUTES;
   const DEFAULT_BREAK_TIME = 5 * MINUTES;
+  const MESSAGES = {
+    NOT_STARTED: {
+      NOT_SELECTED: "教材を選択するか、そのまま開始してください",
+      SELECTED: "を選択中",
+    },
+    STARTED: {
+      NOT_SELECTED: "教材未選択",
+      SELECTED: "を学習しています",
+      PAUSED: "一時停止中",
+      REST: "よくがんばりました！休憩して次の学習に備えましょう",
+    },
+  }
 
   const [studyTime, setStudyTime] = useState(DEFAULT_STUDY_TIME); // 25 minutes in seconds
   const [breakTime, setBreakTime] = useState(DEFAULT_BREAK_TIME); // 5 minutes in seconds
@@ -137,19 +149,15 @@ export default function StudyTimer({ selectedSubject, onResetSelection }: StudyT
           )}
         </div>
 
-        {!isActive && !currentSubject && selectedSubject && (
-          <div className="mb-4 p-3 bg-green-50 rounded-lg">
-            <p className="text-sm text-gray-600">選択中の教材</p>
-            <div className="flex items-center justify-center gap-2 mt-1">
-              <span className="text-2xl">{selectedSubject.icon}</span>
-              <p className="font-semibold text-gray-800">{selectedSubject.name}</p>
-            </div>
+        {!currentSubject && selectedSubject && (
+          <div className="mb-4 p-3 h-12 bg-green-50 rounded-lg">
+            <p className="text-gray-600 text-center">{selectedSubject.name}{MESSAGES.NOT_STARTED.SELECTED}</p>
           </div>
         )}
 
-        {!isActive && !currentSubject && !selectedSubject && (
-          <div className="mb-4 p-3 bg-gray-50 rounded-lg">
-            <p className="text-gray-600 text-center">教材を選択するか、そのまま開始してください</p>
+        {!currentSubject && !selectedSubject && (
+          <div className="mb-4 p-3 h-12 bg-gray-50 rounded-lg">
+            <p className="text-gray-600 text-center">{MESSAGES.NOT_STARTED.NOT_SELECTED}</p>
           </div>
         )}
 
