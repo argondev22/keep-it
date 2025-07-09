@@ -34,8 +34,7 @@ if [[ $confirmation == "y" || $confirmation == "Y" ]]; then
     echo "プロジェクトのセットアップが完了しました。"
 
     echo ""
-    echo "Dev Containerを起動します..."
-    devcontainer up --workspace-folder .
+    echo "VSCodeからDev Containerを起動してください。"
 else
     echo "キャンセルされました。"
     exit 1
