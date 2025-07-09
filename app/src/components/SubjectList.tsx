@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Settings } from "../lib/icons/table-icons";
+import { Plus } from "../lib/icons/table-icons";
 
 interface Subject {
   id: string;
@@ -39,7 +39,7 @@ export default function SubjectList({
           }`}
           disabled={!isLoggedIn}
         >
-          <Settings className="w-6 h-6" />
+          <Plus className="w-6 h-6" />
         </button>
       </div>
 
