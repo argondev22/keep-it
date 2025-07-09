@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface Subject {
   id: string;
@@ -25,7 +26,7 @@ export default function SubjectList({
   return (
     <div className="absolute right-15 bg-white rounded-2xl shadow-xl p-6 w-80 h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-lg font-semibold text-gray-800">教材一覧</h4>
+        <h4 className="text-lg font-semibold text-gray-800">今日の学習</h4>
         <button
           onClick={() => router.push('/subjects')}
           className="px-3 py-1 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors text-sm"
@@ -36,26 +37,33 @@ export default function SubjectList({
 
 
       <div className="flex-1 overflow-y-auto">
-        <div className="space-y-2 pr-2">
-          {subjects.map((subject) => (
-            <div
-              key={subject.id}
-              onClick={() => onSelectSubject(subject)}
-              className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
-                selectedSubject?.id === subject.id
-                  ? 'border-indigo-500 bg-indigo-50'
-                  : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-              }`}
-            >
-              <div className="flex items-center gap-2">
-                <div className={`w-8 h-8 rounded-full ${subject.color} flex items-center justify-center text-white text-sm font-bold`}>
-                  {subject.icon}
+        {subjects.length === 0 ? (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-gray-500 text-sm">今日の教材が登録されていません。<br />
+              教材を登録するには、<Link href="/login" className="text-blue-500 hover:text-blue-700">ログイン</Link>してください。</p>
+          </div>
+        ) : (
+          <div className="space-y-2 pr-2">
+            {subjects.map((subject) => (
+              <div
+                key={subject.id}
+                onClick={() => onSelectSubject(subject)}
+                className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
+                  selectedSubject?.id === subject.id
+                    ? 'border-indigo-500 bg-indigo-50'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <div className={`w-8 h-8 rounded-full ${subject.color} flex items-center justify-center text-white text-sm font-bold`}>
+                    {subject.icon}
+                  </div>
+                  <span className="font-medium text-gray-800">{subject.name}</span>
                 </div>
-                <span className="font-medium text-gray-800">{subject.name}</span>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

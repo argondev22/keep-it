@@ -16,13 +16,7 @@ interface Subject {
 }
 
 export default function Home() {
-  const [subjects] = useState<Subject[]>([
-    { id: "1", name: "数学", color: "bg-blue-500", icon: "🧮" },
-    { id: "2", name: "英語", color: "bg-green-500", icon: "📚" },
-    { id: "3", name: "国語", color: "bg-red-500", icon: "✍️" },
-    { id: "4", name: "理科", color: "bg-purple-500", icon: "🔬" },
-    { id: "5", name: "社会", color: "bg-yellow-500", icon: "🌍" },
-  ]);
+  const [subjects] = useState<Subject[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<Subject | null>(null);
 
   const handleSelectSubject = (subject: Subject) => {
