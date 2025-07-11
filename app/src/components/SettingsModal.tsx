@@ -32,7 +32,7 @@ export default function SettingsModal({ initialStudyTime, initialBreakTime, onSu
             onChange={(e) => setStudyTime(Number(e.target.value))}
             min="1"
             max="120"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
           />
         </div>
         <div>
@@ -45,7 +45,7 @@ export default function SettingsModal({ initialStudyTime, initialBreakTime, onSu
             onChange={(e) => setBreakTime(Number(e.target.value))}
             min="1"
             max="60"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-black"
           />
         </div>
         <div className="flex gap-3 justify-center pt-4">
