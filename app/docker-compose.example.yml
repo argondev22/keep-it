@@ -1,0 +1,15 @@
+services:
+
+  app:
+    image: keep-it
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/app/
+      - /app/node_modules/
+      - /app/.next/
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/

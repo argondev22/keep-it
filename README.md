@@ -1,42 +1,50 @@
-# プロジェクト名
+# keepIT
 
-汎用テンプレートとして使用できるリポジトリ。
+学習管理アプリケーション。
 
-## 環境変数
+## 前提条件
 
-|名前|説明|必須|
-|---|---|---|
-|`EXAMPLE_VARIABLE`|Environmental Varialbe Example|〇|
+- [Dev Containers](https://containers.dev/)をインストールしていること
 
-## クイックスタート
-
-### 前提
-
-- [Dev Container](https://containers.dev/)の CLI まはた VSCode 拡張機能のいづれかをインストールしていること。
+## セットアップ例（macOS/Linux環境）
 
 ### 1. リポジトリをクローンする
 
 ```bash
-git clone <repo-url> <project-name>
-cd <project-name>
+git clone <repo-url> keep-it
+cd keep-it
 ```
 
-### 2. 開発用コンテナ（Dev Container）の起動
-
-1. `devcontainer.example.json`をコピーして`devcontainer.json`を作成する。
-
-2. 下記コマンドを実行して起動。
+### 2. Dev Containersを起動する
 
 ```bash
-devcontainer up --workspace-folder . # または VSCodeのGUIから起動
+bash ./bin/setup-container.sh
+# または
+zsh ./bin/setup-container.sh
 ```
 
-### 3. アプリケーション用コンテナの起動
+以降の手順はDev Containers内で行う。
 
-1. `docker-compose.example.yml`をコピーして`docker-compose.yml`を作成する。
-
-2. 下記コマンドを実行して起動。
+### 3. 開発環境でアプリケーションを起動する
 
 ```bash
 docker compose up
+```
+
+### 4. アプリケーションにアクセスする
+
+ブラウザで以下のURLにアクセス:
+- **アプリケーション**: http://localhost:3000
+
+
+## プロジェクト構成
+
+```
+keep-it/
+├── app/                   # Next.jsアプリケーション
+│   ├── public/            # 静的ファイル
+│   ├── src/               # ソースコード
+│   └── Dockerfile
+├── docker-compose.yml
+└── README.md
 ```

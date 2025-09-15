@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(uuid())
+
+  // === OIDC関連フィールド（必須） ===
+  oidcSubject String  @unique  // OIDCプロバイダーのsubject ID
+  provider    String           // "google", "auth0", "keycloak"など
+
+  // === OIDCから取得する基本情報（キャッシュ） ===
+  email       String?  @unique // OIDCプロバイダーからの email
+  name        String?          // 表示名
+  picture     String?          // プロフィール画像URL
+
+  // === アプリケーション固有フィールド ===
+  // role        UserRole @default(USER)
+  isActive    Boolean  @default(true)
+  // isVerified  Boolean  @default(false)
+
+  // === タイムスタンプ ===
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  lastLoginAt DateTime?
+
+  // === リレーション ===
+  subjects Subject[]
+
+  // 複合インデックス
+  @@unique([oidcSubject, provider])
+  @@index([email])
+  @@index([provider])
+}
+
+model Subject {
+    id        String   @id @default(uuid())
+    name      String
+    picture   String?
+    is_today_studied Boolean @default(false)
+    today_study_time Int @default(0)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user User @relation(fields: [userId], references: [id])
+    userId String
+    @@index([userId])
+}
