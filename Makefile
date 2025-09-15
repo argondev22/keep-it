@@ -5,16 +5,16 @@ init:
 	@./bin/init-project.sh
 
 build:
-	@cd app && docker-compose build
+	@cd app && docker compose build
 
 up:
-	@cd app && docker-compose up -d
+	@cd app && docker compose up -d
 
 down:
-	@cd app && docker-compose down
+	@cd app && docker compose down
 
 logs:
-	@cd app && docker-compose logs -f
+	@cd app && docker compose logs -f
 
 clean:
 	@docker system prune -f
