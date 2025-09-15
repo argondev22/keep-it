@@ -1,22 +1,6 @@
 {
-  "name": "keep-it-dev",
+  "name": "keep-it",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "forwardPorts": [3000],
-  "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
-  ],
-  "postCreateCommand": "git config --global user.name 'Your Name' && git config --global user.email 'your.email@example.com'",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-azuretools.vscode-docker",
-        "ms-azuretools.vscode-containers",
-        "editorconfig.editorconfig",
-        "cweijan.vscode-database-client2",
-        "cweijan.dbclient-jdbc"
-      ]
-    }
-  },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2.5.3": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
@@ -24,5 +8,22 @@
     "git-lfs": "latest",
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
-  }
+  },
+  "postCreateCommand": "git config --global user.name 'Your Name' && git config --global user.email 'your.email@example.com'",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-containers",
+        "editorconfig.editorconfig",
+        "cweijan.vscode-database-client2",
+        "cweijan.dbclient-jdbc",
+        "prisma.prisma"
+      ]
+    }
+  },
+  "forwardPorts": [3000]
 }

@@ -80,3 +80,4 @@ $RECYCLE.BIN/
 docker-compose.yml
 .devcontainer/devcontainer.json
 .claude/
+tmp/
