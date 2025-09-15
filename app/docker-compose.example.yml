@@ -1,12 +1,12 @@
 services:
 
   app:
-    image: argon/keep-it:dev
+    image: keep-it
     build:
-      context: ./app/
+      context: .
       target: dev
     volumes:
-      - ./app/:/app/
+      - .:/app/
       - /app/node_modules/
       - /app/.next/
     ports:

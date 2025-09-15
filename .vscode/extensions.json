@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "ms-vscode-remote.remote-containers", // Remote Containers
+    "pkief.material-icon-theme",
+    "anysphere.remote-containers"
   ]
 }
