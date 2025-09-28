@@ -102,13 +102,71 @@
 - **データロード時間**: 初回ロード3秒以内
 
 ### 3.2 セキュリティ要件
-- **認証・認可**
-  - JWT（JSON Web Token）による認証
-  - パスワードのハッシュ化（bcrypt）
-- **データ保護**
-  - HTTPS通信の強制
-  - SQL インジェクション対策
+
+#### 3.2.1 認証・認可（Google OIDC基盤）
+- **OpenID Connect (OIDC) 認証**
+  - Google Identity Platform を使用
+  - OAuth 2.0 + OpenID Connect プロトコル準拠
+  - ID Token による身元確認
+- **JWT トークン管理**
+  - Access Token: API アクセス用（短期間有効）
+  - Refresh Token: トークン更新用（長期間有効）
+  - トークンの適切なローテーション
+- **認可スコープ管理**
+  - 最小権限の原則に基づくスコープ設定
+  - ユーザー情報アクセスの最小化（email, profile のみ）
+
+#### 3.2.2 OIDC セキュリティ対策
+- **PKCE (Proof Key for Code Exchange)**
+  - モバイルアプリでの認証フロー保護
+  - Authorization Code の傍受攻撃対策
+- **State パラメータ**
+  - CSRF (Cross-Site Request Forgery) 攻撃対策
+  - ランダムな state 値による認証フロー検証
+- **Nonce 検証**
+  - ID Token のリプレイ攻撃対策
+  - トークンの一意性保証
+- **Client Secret 管理**
+  - サーバーサイドでの Client Secret 保護
+  - 環境変数による機密情報管理
+
+#### 3.2.3 セッション・トークン管理
+- **トークン保存**
+  - Web: HttpOnly Cookie + Secure フラグ
+  - Mobile: Keychain (iOS) / Keystore (Android)
+- **トークン有効期限**
+  - Access Token: 1時間
+  - Refresh Token: 30日間
+  - ID Token: 1時間
+- **自動ログアウト**
+  - 非アクティブ時間による自動ログアウト（24時間）
+  - トークン期限切れ時の適切な処理
+
+#### 3.2.4 データ保護
+- **通信セキュリティ**
+  - HTTPS通信の強制（TLS 1.2以上）
+  - HSTS (HTTP Strict Transport Security) ヘッダー
+  - Certificate Pinning（モバイルアプリ）
+- **データベースセキュリティ**
+  - 個人情報の暗号化保存
+  - SQL インジェクション対策（パラメータ化クエリ）
+  - データベース接続の暗号化
+- **アプリケーションセキュリティ**
   - XSS（Cross-Site Scripting）対策
+  - CSRF対策（SameSite Cookie）
+  - Content Security Policy (CSP) ヘッダー
+
+#### 3.2.5 プライバシー・GDPR対応
+- **データ最小化**
+  - 必要最小限のユーザー情報のみ取得・保存
+  - Google から取得する情報の制限
+- **ユーザー権利**
+  - データ削除権（Right to be forgotten）
+  - データポータビリティ権
+  - アクセス権（データ開示）
+- **同意管理**
+  - 明示的なユーザー同意の取得
+  - 同意撤回機能の提供
 
 ### 3.3 可用性要件
 - **稼働率**: 99.5%以上
