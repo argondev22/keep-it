@@ -1,0 +1,44 @@
+---
+alwaysApply: true
+---
+
+# keepIT プロジェクト構造ガイド
+
+このプロジェクトは学習管理アプリケーション「keepIT」のフルスタック開発プロジェクトです。
+
+## プロジェクト概要
+- **目的**: 個人学習者向けの学習記録・管理・モチベーション維持機能を提供
+- **アーキテクチャ**: React.js フロントエンド + Python FastAPI バックエンド
+- **データベース**: PostgreSQL
+- **コンテナ化**: Docker対応
+
+## ディレクトリ構造
+```
+keep-it/
+├── app/
+│   ├── client/          # React.js フロントエンド
+│   │   ├── src/         # Reactソースコード
+│   │   ├── public/      # 静的ファイル
+│   │   └── [package.json](mdc:app/client/package.json) # 依存関係管理
+│   └── server/          # Python FastAPI バックエンド
+│       ├── src/         # Pythonソースコード
+│       │   └── [main.py](mdc:app/server/src/main.py) # FastAPIメインアプリケーション
+│       └── [requirements.txt](mdc:app/server/requirements.txt) # Python依存関係
+├── bin/                 # スクリプト類
+├── docs/               # プロジェクトドキュメント
+│   └── v1.0.0/         # v1.0.0要件定義
+│       └── [REQUIREMENTS_DEFINITION_DOCUMENT.md](mdc:docs/v1.0.0/REQUIREMENTS_DEFINITION_DOCUMENT.md)
+└── .cursor/            # Cursor AI設定
+```
+
+## 技術スタック
+- **フロントエンド**: React 18.x, axios
+- **バックエンド**: Python 3.11, FastAPI, SQLAlchemy, Pydantic
+- **データベース**: PostgreSQL 15.x
+- **開発環境**: Docker, Docker Compose
+
+## 開発方針
+- 日本語でのコミュニケーション
+- セキュリティベストプラクティスの遵守
+- 可読性と保守性を重視したコード
+- Google OIDC認証の実装予定

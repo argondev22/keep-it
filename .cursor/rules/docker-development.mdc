@@ -1,0 +1,68 @@
+---
+globs: **/Dockerfile,**/docker-compose*.yml,**/docker-compose*.yaml
+---
+
+# Docker 開発環境ルール
+
+## Dockerfile 設計原則
+- **マルチステージビルド**を使用してイメージサイズを最小化
+- **非rootユーザー**での実行
+- **レイヤーキャッシュ**を効果的に活用
+- **セキュリティベストプラクティス**の遵守
+
+## フロントエンド Dockerfile
+```dockerfile
+# マルチステージビルドの例
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:18-alpine AS runtime
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+WORKDIR /app
+COPY --from=builder --chown=nextjs:nodejs /app ./
+USER nextjs
+```
+
+## バックエンド Dockerfile
+```dockerfile
+FROM python:3.11-slim
+RUN adduser --disabled-password --gecos '' appuser
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY --chown=appuser:appuser . .
+USER appuser
+```
+
+## Docker Compose 設計
+- **環境変数**を使用した設定管理
+- **ボリューム**を適切に使用してデータ永続化
+- **ネットワーク**を適切に分離
+- **ヘルスチェック**の実装
+
+## セキュリティ考慮事項
+- 最新の基本イメージを使用
+- 不要なパッケージのインストールを避ける
+- 機密情報をイメージに含めない
+- 適切なファイル権限の設定
+
+## パフォーマンス最適化
+- .dockerignoreファイルの適切な使用
+- レイヤーの最適化
+- キャッシュ戦略の実装
+- 並列ビルドの活用
+
+## 開発環境設定
+- ホットリロード機能の有効化
+- デバッグポートの適切な公開
+- ログ出力の最適化
+- 開発用ツールの統合
+
+## 本番環境考慮事項
+- セキュリティスキャンの実施
+- イメージサイズの最小化
+- リソース制限の設定
+- モニタリング・ログ収集の設定
