@@ -119,41 +119,79 @@
 - **ユーザー増加対応**: 10,000ユーザーまでの拡張を想定
 - **機能追加対応**: モジュラー設計による機能追加の容易性
 
+### 3.5 モバイル固有要件
+- **オフライン対応**: 基本的な学習記録機能のオフライン利用
+- **プッシュ通知**: 学習リマインダー、目標達成通知
+- **バッテリー最適化**: バックグラウンド処理の最小化
+- **デバイス連携**:
+  - カメラ: 教材のバーコードスキャン（将来実装）
+  - 位置情報: 学習場所の記録（オプション）
+- **アプリストア要件**:
+  - iOS: App Store Review Guidelines準拠
+  - Android: Google Play ポリシー準拠
+
 ## 4. 技術要件
 
-### 4.1 システム構成
+### 4.1 プラットフォーム構成
+- **Webアプリケーション**: レスポンシブデザインによるデスクトップ・タブレット対応
+- **モバイルアプリケーション**: iOS・Android対応のネイティブアプリ
+- **共通バックエンドAPI**: Web・モバイル共通のRESTful API
+
+### 4.2 システム構成
 - **アーキテクチャ**: マイクロサービス指向
 - **デプロイ**: Docker コンテナ化
 - **CI/CD**: GitHub Actions
 
-### 4.2 技術スタック
+### 4.3 技術スタック
 
-#### 4.2.1 フロントエンド
+#### 4.3.1 Webフロントエンド
 - **フレームワーク**: React 18.x
 - **状態管理**: Redux Toolkit
 - **UI ライブラリ**: Material-UI (MUI)
 - **ルーティング**: React Router
 - **バンドラー**: Vite
+- **PWA対応**: Service Worker, Web App Manifest
 
-#### 4.2.2 バックエンド
+#### 4.3.2 モバイルアプリ
+- **フレームワーク**: React Native 0.72.x
+- **状態管理**: Redux Toolkit
+- **UI ライブラリ**: React Native Elements / NativeBase
+- **ナビゲーション**: React Navigation
+- **ビルドツール**: Expo CLI / React Native CLI
+- **プッシュ通知**: Firebase Cloud Messaging (FCM)
+- **ローカルストレージ**: AsyncStorage / SQLite
+
+#### 4.3.3 バックエンドAPI
 - **言語**: Python 3.11
 - **フレームワーク**: FastAPI
 - **データベース**: PostgreSQL 15.x
 - **キャッシュ**: Redis
 - **タスクキュー**: Celery
+- **認証**: JWT + OAuth 2.0 (Google OIDC)
+- **プッシュ通知**: Firebase Admin SDK
+- **API仕様**: OpenAPI 3.0 (Swagger)
 
-#### 4.2.3 インフラストラクチャ
+#### 4.3.4 インフラストラクチャ
 - **クラウド**: AWS
 - **コンテナ**: Docker, Docker Compose
 - **データベースホスティング**: AWS RDS
 - **ファイルストレージ**: AWS S3
 - **CDN**: AWS CloudFront
+- **プッシュ通知**: Firebase Cloud Messaging
+- **アプリ配信**: App Store, Google Play Store
 
-### 4.3 開発環境
+### 4.4 開発環境
 - **バージョン管理**: Git (GitHub)
 - **API ドキュメンテーション**: FastAPI 自動生成 + Swagger
-- **テスト**: pytest (Backend), Jest + React Testing Library (Frontend)
+- **テスト**:
+  - Backend: pytest
+  - Web Frontend: Jest + React Testing Library
+  - Mobile: Jest + React Native Testing Library, Detox (E2E)
 - **コード品質**: ESLint, Prettier, Black, isort
+- **モバイル開発**:
+  - iOS: Xcode, iOS Simulator
+  - Android: Android Studio, Android Emulator
+  - デバイステスト: Expo Go, TestFlight, Firebase App Distribution
 
 ## 5. データ設計
 
@@ -232,24 +270,28 @@
 
 ## 7. 開発スケジュール
 
-### 7.1 Phase 1: 基盤構築 (4週間)
-- **Week 1-2**: インフラ構築、認証システム
-- **Week 3-4**: 基本的なフロントエンド構築
+### 7.1 Phase 1: 基盤構築 (6週間)
+- **Week 1-2**: インフラ構築、認証システム、API設計
+- **Week 3-4**: Webアプリケーション基盤構築
+- **Week 5-6**: React Native環境構築、基本画面実装
 
-### 7.2 Phase 2: 核心機能開発 (6週間)
-- **Week 5-6**: 学習記録機能
-- **Week 7-8**: データ可視化機能
-- **Week 9-10**: 目標設定・管理機能
+### 7.2 Phase 2: 核心機能開発 (8週間)
+- **Week 7-8**: 学習記録機能（Web・Mobile）
+- **Week 9-10**: データ可視化機能（Web・Mobile）
+- **Week 11-12**: 目標設定・管理機能（Web・Mobile）
+- **Week 13-14**: プラットフォーム間データ同期機能
 
-### 7.3 Phase 3: 付加機能開発 (4週間)
-- **Week 11-12**: 教材管理、通知機能
-- **Week 13-14**: 基本SNS機能
+### 7.3 Phase 3: 付加機能開発 (6週間)
+- **Week 15-16**: 教材管理、通知機能（Web・Mobile）
+- **Week 17-18**: 基本SNS機能（Web・Mobile）
+- **Week 19-20**: プッシュ通知、オフライン対応（Mobile）
 
-### 7.4 Phase 4: 品質向上・リリース準備 (2週間)
-- **Week 15**: テスト、バグ修正
-- **Week 16**: デプロイ、リリース
+### 7.4 Phase 4: 品質向上・リリース準備 (4週間)
+- **Week 21-22**: テスト、バグ修正（Web・Mobile）
+- **Week 23**: Webアプリデプロイ
+- **Week 24**: モバイルアプリストア申請・リリース
 
-**総開発期間**: 16週間（約4ヶ月）
+**総開発期間**: 24週間（約6ヶ月）
 
 ## 8. リスク・制約事項
 
