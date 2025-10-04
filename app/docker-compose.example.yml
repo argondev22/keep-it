@@ -1,31 +1,51 @@
 services:
-
-  client:
-    image: client
-    build: ./client
+  # Webフロントエンド
+  web:
+    image: keep-it.web
+    build: ./web
     ports:
       - "3000:3000"
     volumes:
-      - ./client:/app
+      - ./web:/app
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=http://api:8000
     depends_on:
-      - server
+      - api
 
-  server:
-    image: server
-    build: ./server
+  # モバイル
+  mobile:
+    image: keep-it-mobile
+    build: ./mobile
+    ports:
+      - "19006:19006"  # Expo DevTools
+      - "19000:19000"  # Expo CLI
+    volumes:
+      - ./mobile:/app
+      - /app/node_modules
+    environment:
+      - EXPO_DEVTOOLS_LISTEN_ADDRESS=0.0.0.0
+    depends_on:
+      - api
+
+  # バックエンドAPI
+  api:
+    image: keep-it-api
+    build: ./api
     ports:
       - "8000:8000"
     volumes:
-      - ./server:/app
+      - ./api:/app
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/keepit
+      - REDIS_URL=redis://redis:6379
       - PYTHONPATH=/app/src:/app
     depends_on:
       - db
+      - redis
 
+  # データベース
   db:
     image: postgres:16
     ports:
@@ -35,12 +55,26 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=keepit
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  # Redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   db_data:
+  redis_data:
