@@ -1,5 +1,5 @@
 ---
-globs: app/server/**/*.py
+globs: app/api/**/*.py
 ---
 
 # Python バックエンド開発ルール
@@ -41,8 +41,8 @@ globs: app/server/**/*.py
 - レスポンス時間の監視
 
 ## 依存関係管理
-- [requirements.txt](mdc:app/server/requirements.txt)の適切な管理
+- [requirements.txt](mdc:app/api/requirements.txt)の適切な管理
 - セキュリティアップデートの定期的な実施
 - バージョン固定による再現性の確保
 
-## 例: 現在の[main.py](mdc:app/server/src/main.py)の構造を参考にする
+## 例: 現在の[main.py](mdc:app/api/src/main.py)の構造を参考にする

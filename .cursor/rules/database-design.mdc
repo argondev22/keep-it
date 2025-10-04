@@ -1,5 +1,5 @@
 ---
-globs: app/server/**/*.py,docs/**/*.md
+globs: app/api/**/*.py,docs/**/*.md
 description: データベース設計とSQLAlchemy使用時のガイドライン
 ---
 

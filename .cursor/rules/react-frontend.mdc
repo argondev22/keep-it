@@ -1,5 +1,5 @@
 ---
-globs: app/client/**/*.js,app/client/**/*.jsx,app/client/**/*.ts,app/client/**/*.tsx
+globs: app/web/**/*.js,app/web/**/*.jsx,app/web/**/*.ts,app/web/**/*.tsx
 ---
 
 # React フロントエンド開発ルール
