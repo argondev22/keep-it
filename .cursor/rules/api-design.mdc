@@ -1,5 +1,5 @@
 ---
-globs: app/server/**/*.py
+globs: app/api/**/*.py
 description: RESTful API設計とFastAPI実装のガイドライン
 ---
 

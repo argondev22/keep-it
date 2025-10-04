@@ -40,4 +40,4 @@ globs: app/client/**/*.js,app/client/**/*.jsx,app/client/**/*.ts,app/client/**/*
 - 機密情報をクライアントサイドに保存しない
 - HTTPS通信を前提とする
 
-## 例: 現在の[App.js](mdc:app/client/src/App.js)の構造を参考にする
+## 例: 現在の[App.js](mdc:app/web/src/App.js)の構造を参考にする
