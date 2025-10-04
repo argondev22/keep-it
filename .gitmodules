@@ -1,0 +1,9 @@
+[submodule "app/api"]
+	path = app/api
+	url = git@github.com:argondev22/keep-it.api.git
+[submodule "app/mobile"]
+	path = app/mobile
+	url = git@github.com:argondev22/keep-it.mobile.git
+[submodule "app/web"]
+	path = app/web
+	url = git@github.com:argondev22/keep-it.web.git
