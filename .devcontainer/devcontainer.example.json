@@ -1,10 +1,23 @@
 {
-  "name": "template.utils",
+  "name": "keepIT",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2.5.3": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11",
+      "installTools": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18",
+      "nodeGypDependencies": true,
+      "installYarnUsingApt": true
+    },
+    "ghcr.io/devcontainers/features/postgres:1": {
+      "version": "15"
+    },
+    "ghcr.io/devcontainers/features/redis:1": {}
   },
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind",
@@ -17,9 +30,72 @@
         "bierner.markdown-mermaid",
         "cweijan.vscode-database-client2",
         "cweijan.dbclient-jdbc",
-        "ms-python.python"
-      ]
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-python.pylint",
+        "ms-vscode.vscode-json",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode.vscode-react-native",
+        "expo.vscode-expo-tools",
+        "ms-vscode.vscode-react-native-pack",
+        "formulahendry.auto-rename-tag",
+        "christian-kohler.path-intellisense",
+        "ms-vscode.vscode-yaml",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.remote-containers"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "black",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.sortImports.args": ["--profile", "black"],
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        },
+        "eslint.workingDirectories": ["app/web", "app/mobile"],
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "emmet.includeLanguages": {
+          "javascript": "javascriptreact"
+        }
+      }
     }
   },
-  "forwardPorts": [3000]
+  "forwardPorts": [3000, 8000, 19000, 19006, 5432, 6379],
+  "portsAttributes": {
+    "3000": {
+      "label": "React Web App",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "FastAPI Backend",
+      "onAutoForward": "notify"
+    },
+    "19000": {
+      "label": "Expo DevTools",
+      "onAutoForward": "notify"
+    },
+    "19006": {
+      "label": "Expo CLI",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    },
+    "6379": {
+      "label": "Redis",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "pip install --upgrade pip && pip install -r app/api/requirements.txt",
+  "remoteUser": "vscode"
 }
