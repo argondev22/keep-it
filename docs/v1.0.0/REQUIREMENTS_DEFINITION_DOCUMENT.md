@@ -16,7 +16,7 @@
 - **主要機能**: 学習記録、可視化、SNS機能、教材管理
 - **差別化ポイント**: よりシンプルで直感的なUI、効果的な学習継続支援機能
 
-## 2. MVP機能要件（v1.0.0）
+## 2. 機能要件（v1.0.0）
 
 ### 2.1 優先度A（必須機能）
 
@@ -94,6 +94,7 @@
 - 外部アプリ連携
 - バーコードスキャン機能
 - Googleカレンダー連携
+- AIを活用した機能
 
 ## 3. 非機能要件
 
@@ -320,6 +321,7 @@
 - total_pages: Integer
 - difficulty_level: Integer (1-5)
 - created_at: DateTime
+- updated_at: DateTime
 ```
 
 #### 5.1.3 学習セッション (StudySession)
@@ -332,17 +334,7 @@
 - duration_minutes: Integer
 - pages_studied: Integer
 - created_at: DateTime
-```
-
-#### 5.1.4 目標 (Goal)
-```
-- id: Primary Key
-- user_id: Foreign Key
-- title: String
-- target_date: Date
-- daily_target_minutes: Integer
-- status: Enum (active, completed, paused)
-- created_at: DateTime
+- updated_at: DateTime
 ```
 
 ## 6. 収益化戦略
