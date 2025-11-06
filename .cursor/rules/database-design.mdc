@@ -6,12 +6,14 @@ description: データベース設計とSQLAlchemy使用時のガイドライン
 # データベース設計ルール
 
 ## 基本設計原則
+
 - **正規化**を適切に行い、データの整合性を保つ
 - **インデックス**を効果的に使用してパフォーマンスを向上
 - **外部キー制約**を使用してデータ整合性を確保
 - **命名規則**を統一（snake_case使用）
 
 ## SQLAlchemy モデル設計
+
 - 各テーブルに`id`（Primary Key）、`created_at`、`updated_at`を含める
 - リレーションシップを適切に定義
 - バックリファレンスを使用して双方向アクセスを可能にする
@@ -19,6 +21,7 @@ description: データベース設計とSQLAlchemy使用時のガイドライン
 ## 主要エンティティ（[要件定義書](mdc:docs/v1.0.0/REQUIREMENTS_DEFINITION_DOCUMENT.md)参照）
 
 ### User（ユーザー）
+
 ```python
 class User(Base):
     __tablename__ = "users"
@@ -31,6 +34,7 @@ class User(Base):
 ```
 
 ### Material（教材）
+
 ```python
 class Material(Base):
     __tablename__ = "materials"
@@ -45,6 +49,7 @@ class Material(Base):
 ```
 
 ### StudySession（学習セッション）
+
 ```python
 class StudySession(Base):
     __tablename__ = "study_sessions"
@@ -60,6 +65,7 @@ class StudySession(Base):
 ```
 
 ### Goal（目標）
+
 ```python
 class Goal(Base):
     __tablename__ = "goals"
@@ -74,11 +80,13 @@ class Goal(Base):
 ```
 
 ## マイグレーション管理
+
 - Alembicを使用してスキーマ変更を管理
 - マイグレーションファイルには分かりやすい名前を付ける
 - 本番環境への適用前に十分なテストを実施
 
 ## パフォーマンス考慮事項
+
 - 頻繁にクエリされるカラムにインデックスを作成
 - N+1問題を避けるためにeager loadingを使用
 - 大量データの処理にはページネーションを実装

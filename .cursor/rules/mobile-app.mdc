@@ -6,12 +6,14 @@ description: モバイルアプリケーション開発のガイドライン
 # モバイルアプリケーション開発ルール
 
 ## モバイルアプリ設計原則
+
 - **クロスプラットフォーム**対応
 - **ネイティブパフォーマンス**の追求
 - **オフライン機能**の実装
 - **ユーザビリティ**の最優先
 
 ## 技術スタック選択
+
 - **React Native** (推奨)
   - JavaScript/TypeScriptの知識を活用
   - コードの共有化が可能
@@ -22,7 +24,8 @@ description: モバイルアプリケーション開発のガイドライン
   - Dart言語の習得が必要
 
 ## ディレクトリ構造
-```
+
+```plaintext
 app/mobile/
 ├── src/
 │   ├── components/    # 再利用可能なコンポーネント
@@ -48,6 +51,7 @@ app/mobile/
 ```
 
 ## React Native 実装パターン
+
 ```typescript
 // 画面コンポーネント
 import React from 'react';
@@ -82,6 +86,7 @@ const styles = StyleSheet.create({
 ```
 
 ## ナビゲーション設計
+
 ```typescript
 // React Navigation設定
 import { NavigationContainer } from '@react-navigation/native';
@@ -103,6 +108,7 @@ export const AppNavigator = () => {
 ```
 
 ## 状態管理
+
 ```typescript
 // Redux Toolkit使用例
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
@@ -145,6 +151,7 @@ const studySlice = createSlice({
 ```
 
 ## オフライン機能
+
 ```typescript
 // オフライン対応の実装
 import NetInfo from '@react-native-community/netinfo';
@@ -173,18 +180,21 @@ export const useOfflineSync = () => {
 ```
 
 ## パフォーマンス最適化
+
 - **FlatList**の適切な使用
 - **画像の最適化**（WebP形式の使用）
 - **メモ化**の実装
 - **バンドルサイズ**の最適化
 
 ## セキュリティ
+
 - **証明書ピニング**の実装
 - **機密情報**の適切な管理
 - **バイオメトリック認証**の統合
 - **データ暗号化**の実装
 
 ## テスト戦略
+
 ```typescript
 // Jest + React Native Testing Library
 import { render, fireEvent } from '@testing-library/react-native';
@@ -206,18 +216,21 @@ describe('StudySessionScreen', () => {
 ```
 
 ## デプロイメント
+
 - **Fastlane**による自動化
 - **App Store Connect**への自動アップロード
 - **Google Play Console**への自動アップロード
 - **CodePush**によるホットアップデート
 
 ## 品質基準
+
 - **TypeScript**の厳密な使用
 - **ESLint**による静的解析
 - **Prettier**によるコードフォーマット
 - **単体テスト**の充実
 
 ## ユーザビリティ
+
 - **アクセシビリティ**の対応
 - **多言語対応**（i18n）
 - **ダークモード**の実装
