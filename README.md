@@ -7,11 +7,13 @@ A comprehensive project template that provides a ready-to-use development enviro
 ## Features
 
 ### 🚀 Development Environment Template
+
 - **Dev Containers**: Instant development environment setup with VSCode
 - **Docker Compose**: Easy multi-service environment management
 - **GitHub Templates**: Standardized issue and PR templates
 
 ### 📱 Sample Application
+
 - **Full-Stack Architecture**: 3-tier architecture with React + FastAPI + PostgreSQL
 - **Real-time Features**: Instant data updates with button clicks
 - **Data Persistence**: Click history management with PostgreSQL
@@ -34,7 +36,7 @@ sequenceDiagram
 
 ## Directory Structure
 
-```
+```plaintext
 .
 ├── .devcontainer/                # Development container configuration
 ├── .github/                      # GitHub configuration
@@ -49,6 +51,7 @@ sequenceDiagram
 ```
 
 > **📖 For detailed information about each service, please refer to their respective README files:**
+>
 > - **Client (React)**: [`app/client/README.md`](app/client/README.md)
 > - **Server (FastAPI)**: [`app/server/README.md`](app/server/README.md)
 
@@ -63,12 +66,14 @@ sequenceDiagram
 ### Quick Start
 
 1. **Clone the repository**
+
    ```bash
    git clone <repo-url> <project-name>
    cd <project-name>
    ```
 
 2. **Initialize the project**
+
    ```bash
    make init
    ```
@@ -79,9 +84,10 @@ sequenceDiagram
    - Select and execute the command
 
 4. **Start the development environment**
+
    ```bash
    make up
    ```
 
 5. **Access your application**
-   - Open your browser and navigate to: http://localhost:3000
+   - Open your browser and navigate to: `http://localhost:3000`
