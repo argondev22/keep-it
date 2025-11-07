@@ -1,0 +1,42 @@
+---
+extends: default
+
+rules:
+  # 行の長さ制限を緩和
+  line-length:
+    max: 120
+    level: warning
+
+  # インデント設定（2スペース）
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+
+  # コメント設定
+  comments:
+    min-spaces-from-content: 1
+
+  # トレーリングスペースを許可しない
+  trailing-spaces: enable
+
+  # ドキュメント開始マーカー（---）を必須にしない
+  document-start: disable
+
+  # 空行の制限を緩和
+  empty-lines:
+    max: 2
+
+  # キーの重複を禁止
+  key-duplicates: enable
+
+  # 真偽値の表記を厳格化
+  truthy:
+    allowed-values: ["true", "false"]
+    check-keys: false
+
+ignore: |
+  node_modules/
+  .git/
+  venv/
+  .venv/

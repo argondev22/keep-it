@@ -1,8 +1,11 @@
 {
   "recommendations": [
     "pkief.material-icon-theme",
-    "anysphere.remote-containers",
+    "github.copilot",
+    "GitHub.copilot-chat",
+    "github.codespaces",
     "ms-azuretools.vscode-docker",
-    "ms-azuretools.vscode-containers"
+    "ms-azuretools.vscode-containers",
+    "ms-vscode-remote.remote-containers",
   ]
 }
