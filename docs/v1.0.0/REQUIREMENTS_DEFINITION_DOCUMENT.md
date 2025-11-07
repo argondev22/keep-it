@@ -340,7 +340,7 @@
 
 #### 5.1.1 ユーザー (User)
 
-```
+```plaintext
 - id: Primary Key
 - email: Email (Unique)
 - password_hash: String
@@ -351,7 +351,7 @@
 
 #### 5.1.2 教材 (Material)
 
-```
+```plaintext
 - id: Primary Key
 - user_id: Foreign Key
 - title: String
@@ -363,7 +363,7 @@
 
 #### 5.1.3 学習セッション (StudySession)
 
-```
+```plaintext
 - id: Primary Key
 - user_id: Foreign Key
 - material_id: Foreign Key
@@ -376,7 +376,7 @@
 
 #### 5.1.4 目標 (Goal)
 
-```
+```plaintext
 - id: Primary Key
 - user_id: Foreign Key
 - title: String
