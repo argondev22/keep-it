@@ -1,9 +1,6 @@
 {
-  "version": 1,
   "permissions": {
-    "allow": [
-      "Shell(ls)"
-    ],
-    "deny": []
+    "allow": ["Shell(ls)", "Shell(mkdir)", "Shell(touch)", "Shell(cp)", "Shell(mv)"],
+    "deny": ["Shell(rm)"]
   }
 }

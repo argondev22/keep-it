@@ -1,0 +1,85 @@
+{
+  "version": "0.2",
+  "language": "en,en-US",
+  "words": [
+    // プロジェクト固有の単語をここに追加
+    "devcontainer",
+    "editorconfig",
+    "gitignore",
+    "markdownlint",
+    "commitlint",
+    "yamllint",
+    "jsonc",
+    "vscode",
+    "copilot",
+    "mcr",
+    "bierner",
+    "esbenp",
+    "venv",
+    "cli"
+  ],
+  "ignorePaths": [
+    // リント対象外のパス
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    "out/**",
+    "coverage/**",
+    ".git/**",
+    ".vscode/**",
+    ".idea/**",
+    "**/*.log",
+    "**/*.min.js",
+    "**/*.min.css",
+    "package-lock.json",
+    "yarn.lock",
+    "pnpm-lock.yaml",
+    "*.svg",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.ico",
+    "*.pdf"
+  ],
+  "ignoreRegExpList": [
+    // 正規表現でマッチするパターンを無視
+    "\\bhttps?://[^\\s]+",
+    "\\b[A-Z0-9]{8,}\\b",
+    "/\\*[\\s\\S]*?\\*/",
+    "```[\\s\\S]*?```"
+  ],
+  "dictionaries": [
+    // 使用する辞書
+    "companies",
+    "softwareTerms",
+    "misc"
+  ],
+  "enabledLanguageIds": [
+    // スペルチェックを有効にする言語
+    "markdown",
+    "plaintext",
+    "text",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "python",
+    "json",
+    "jsonc",
+    "yaml",
+    "yml",
+    "html",
+    "css",
+    "scss",
+    "vue",
+    "go",
+    "rust",
+    "java",
+    "csharp"
+  ],
+  "allowCompoundWords": true,
+  "minWordLength": 3,
+  "maxNumberOfProblems": 100,
+  "numSuggestions": 8
+}

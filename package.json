@@ -1,0 +1,31 @@
+{
+  "name": "template.utils",
+  "version": "1.0.0",
+  "description": "A comprehensive template repository for creating new GitHub projects with pre-configured development environment and best practices.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/argondev22/template.utils.git"
+  },
+  "keywords": [],
+  "author": "argondev22",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/argondev22/template.utils/issues"
+  },
+  "homepage": "https://github.com/argondev22/template.utils#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "default": true,
+  "MD013": false, // 行の長さ制限を無効化
+  "MD033": false, // HTMLタグを許可
+  "MD041": false, // 最初の行が見出しでなくてもOK
+  "MD034": false, // URL自動リンクを許可
+  "MD024": false // 重複する見出しを許可
+}

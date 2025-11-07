@@ -19,8 +19,8 @@ services:
     image: keep-it-mobile
     build: ./mobile
     ports:
-      - "19006:19006"  # Expo DevTools
-      - "19000:19000"  # Expo CLI
+      - "19006:19006" # Expo DevTools
+      - "19000:19000" # Expo CLI
     volumes:
       - ./mobile:/app
       - /app/node_modules
