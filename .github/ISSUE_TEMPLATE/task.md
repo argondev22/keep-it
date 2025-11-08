@@ -1,6 +1,6 @@
 ---
 name: Task
-about: Create a new task
+about: Common tasks to be completed
 assignees: "argondev22"
 ---
 
