@@ -1,18 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Template Utils API
-  description: |
-    Simple Hello Template App with React + Python + PostgreSQL
-
-    This API provides basic functionality for a click counter application
-    that logs user interactions and provides statistics.
+  title: keepIT API Specification
   version: 1.0.0
-  contact:
-    name: Development Team
-    email: dev@example.com
-  license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
 
 servers:
   - url: http://localhost:8000
