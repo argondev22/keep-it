@@ -1,0 +1,181 @@
+openapi: 3.0.3
+info:
+  title: Template Utils API
+  description: |
+    Simple Hello Template App with React + Python + PostgreSQL
+
+    This API provides basic functionality for a click counter application
+    that logs user interactions and provides statistics.
+  version: 1.0.0
+  contact:
+    name: Development Team
+    email: dev@example.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:8000
+    description: Local development environment
+  - url: http://server:8000
+    description: Docker environment
+
+tags:
+  - name: general
+    description: General information endpoints
+  - name: template
+    description: Hello Template functionality
+  - name: statistics
+    description: Click statistics
+
+paths:
+  /:
+    get:
+      tags:
+        - general
+      summary: Root endpoint
+      description: Returns basic information about the API
+      operationId: root
+      responses:
+        "200":
+          description: API information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  version:
+                    type: string
+                  description:
+                    type: string
+              example:
+                message: "Template Utils API - Hello Template App"
+                version: "1.0.0"
+                description: "Simple sample application with React + Python + PostgreSQL"
+
+  /health:
+    get:
+      tags:
+        - general
+      summary: Health check
+      description: Check the operational status of the API server
+      operationId: healthCheck
+      responses:
+        "200":
+          description: Server is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+              example:
+                status: "healthy"
+                timestamp: "2025-11-08T12:00:00Z"
+
+  /api/hello:
+    post:
+      tags:
+        - template
+      summary: Hello Template
+      description: |
+        Records a click event to the database and returns a greeting message
+        with the total click count.
+      operationId: helloTemplate
+      responses:
+        "200":
+          description: Click recorded successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelloResponse"
+              example:
+                message: "Hello Template! 🎉"
+                click_count: 42
+        "500":
+          description: Database error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/stats:
+    get:
+      tags:
+        - statistics
+      summary: Get click statistics
+      description: Retrieve statistics about button clicks including total count and latest click timestamp
+      operationId: getStats
+      responses:
+        "200":
+          description: Statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_clicks:
+                    type: integer
+                    description: Total number of clicks recorded
+                  latest_click:
+                    type: string
+                    format: date-time
+                    description: Timestamp of the most recent click
+                    nullable: true
+              example:
+                total_clicks: 42
+                latest_click: "2025-11-08T12:34:56.789000"
+        "500":
+          description: Database error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    HelloResponse:
+      type: object
+      required:
+        - message
+        - click_count
+      properties:
+        message:
+          type: string
+          description: Greeting message
+          example: "Hello Template! 🎉"
+        click_count:
+          type: integer
+          description: Total number of clicks recorded in the database
+          example: 42
+
+    ClickLog:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the click log entry
+        clicked_at:
+          type: string
+          format: date-time
+          description: Timestamp when the click occurred
+      example:
+        id: 1
+        clicked_at: "2025-11-08T12:34:56.789000"
+
+    Error:
+      type: object
+      required:
+        - detail
+      properties:
+        detail:
+          type: string
+          description: Error message describing what went wrong
+      example:
+        detail: "Database error: Connection timeout"
