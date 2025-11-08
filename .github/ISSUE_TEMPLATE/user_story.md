@@ -1,6 +1,7 @@
 ---
 name: User Story
 about: New feature or functionality from an end-user perspective
+title: "`app`: "
 labels: ["story"]
 assignees: "argondev22"
 ---
