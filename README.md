@@ -90,4 +90,4 @@ sequenceDiagram
    ```
 
 5. **Access your application**
-   - Open your browser and navigate to: http://localhost:3000
+   - Open your browser and navigate to: `http://localhost:3000`
