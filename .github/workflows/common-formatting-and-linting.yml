@@ -61,17 +61,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
-      - name: Run jsonlint
-        run: |
-          shopt -s globstar nullglob
-          files=(**/*.json)
-          if [ ${#files[@]} -gt 0 ]; then
-            npx jsonlint --quiet "${files[@]}"
-          else
-            echo "No JSON files found to lint"
-          fi
-        shell: bash
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run jsonlint-mod
+        run: npm run lint:json
 
   yamllint:
     name: Lint YAML files
