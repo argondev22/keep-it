@@ -16,7 +16,8 @@
     "bierner",
     "esbenp",
     "venv",
-    "cli"
+    "cli",
+    "usr"
   ],
   "ignorePaths": [
     // リント対象外のパス
