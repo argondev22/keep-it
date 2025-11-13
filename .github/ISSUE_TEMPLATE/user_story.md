@@ -10,9 +10,9 @@ assignees: "argondev22"
 
 <!-- Describe the feature from the end-user perspective -->
 
-**As a** User,
-**I can** ,
-**So that**
+**As a** [User Type],
+**I can** [action/capability],
+**So that** [benefit/value]
 
 ---
 

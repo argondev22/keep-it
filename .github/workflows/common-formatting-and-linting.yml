@@ -5,11 +5,9 @@ on:
   push:
     branches:
       - main
-      - develop
   pull_request:
     branches:
       - main
-      - develop
 
 jobs:
   prettier:
@@ -24,10 +22,33 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Run Prettier check
-        run: npx prettier --check "**/*.{json,yml,yaml,md}"
+        run: npm run format:check
 
+  markdownlint:
+    name: Lint Markdown files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run markdownlint
+        run: npm run lint:markdown
   jsonlint:
     name: Lint JSON files
     runs-on: ubuntu-latest
@@ -51,22 +72,6 @@ jobs:
             echo "No JSON files found to lint"
           fi
         shell: bash
-
-  markdownlint:
-    name: Lint Markdown files
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Run markdownlint
-        run: npx markdownlint-cli2 "**/*.md"
 
   yamllint:
     name: Lint YAML files
