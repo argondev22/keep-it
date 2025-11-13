@@ -49,25 +49,6 @@ jobs:
 
       - name: Run markdownlint
         run: npm run lint:markdown
-  jsonlint:
-    name: Lint JSON files
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run jsonlint-mod
-        run: npm run lint:json
 
   yamllint:
     name: Lint YAML files

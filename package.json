@@ -4,14 +4,12 @@
     "format": "prettier --write . && npm run format:markdown",
     "format:check": "prettier --check .",
     "format:markdown": "npx markdownlint-cli2 --fix --config .markdownlint.jsonc \"**/*.md\"",
-    "lint:markdown": "npx markdownlint-cli2 --config .markdownlint.jsonc \"**/*.md\"",
-    "lint:json": "npx jsonlint-mod --quiet --in-place **/*.json !package-lock.json !**/node_modules/**"
+    "lint:markdown": "npx markdownlint-cli2 --config .markdownlint.jsonc \"**/*.md\""
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "husky": "^9.1.7",
-    "jsonlint-mod": "^1.7.6",
     "markdownlint-cli2": "^0.19.0",
     "prettier": "^3.6.2"
   }
