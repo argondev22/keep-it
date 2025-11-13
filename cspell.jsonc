@@ -17,7 +17,8 @@
     "esbenp",
     "venv",
     "cli",
-    "usr"
+    "usr",
+    "bak"
   ],
   "ignorePaths": [
     // リント対象外のパス
